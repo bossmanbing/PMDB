@@ -5,6 +5,15 @@ require($path.'/include/init.inc.php');
 $char_qry = "SELECT char_displayName, char_fileName FROM characters";
 
 $char_res = $db->query($char_qry);
+
+$username = 'rocky';
+$qry = "SELECT user_id, user_name
+				FROM user
+					WHERE user_name = '$username'
+					LIMIT 1";
+$qry_res = $db->query($qry);
+
+$user = $qry_res->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,6 +33,7 @@ $char_res = $db->query($char_qry);
 
 				<div id='index-leaders'>
 					<h4>List</h4>
+					<br /><?php echo $user['user_id']; ?>
 					<div class='bannerBar'></div>
 
 				<?php
