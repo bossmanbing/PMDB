@@ -1,0 +1,392 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Abel);
+body{
+  background-color: #00003a;
+  color:#080808;
+  font-family: 'Open Sans', sans-serif;
+  margin:0;
+  padding:0;
+}
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Abel', sans-serif;
+}
+
+h1{
+  font-size:1.8em;
+}
+
+h2{
+  margin:2px;
+  padding:2px;
+  font-size:1.6em;
+  -webkit-margin-before: 0.2em;
+  -webkit-margin-after: 0.2em;
+}
+
+h3{
+  font-size:1.4em;
+}
+
+h4{
+  font-size:1.3em;
+}
+
+h5{
+  font-size:1.1em;
+}
+
+h6{
+  font-size:1.0em;
+}
+
+a{
+  color:#000069;
+  font-weight:bold;
+}
+
+form{
+  margin:2px 8px;
+}
+
+form input[type="button"], input[type='submit']{
+  margin-left:255px;
+  min-width:70px;
+  padding:3px;
+}
+
+input[type="text"], input[type='password']{
+  background-color: #fffbf4;
+  font-size:.9em;
+  padding-left:5px;
+}
+
+select{
+  min-widtH: 135px;
+  background-color: #fffbf4;
+  font-family: 'Open Sans', sans-serif;
+  font-size:.9em;
+}
+
+thead{
+  font-family: 'Abel', sans-serif;
+  font-size:1.2em;
+}
+
+#logo{
+  margin:10px auto;
+  margin-left:5%;
+}
+
+#logo img{
+}
+
+#nav ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 3px auto;
+  margin-left: 5%;
+}
+
+#nav li{
+  display: inline;
+  color: #efefef;
+}
+
+#nav li a{
+  margin-right:25px;
+  color: #99d5f8;
+  font-family: 'Abel', sans-serif;
+  font-size:1.25em;
+  text-decoration: none;
+}
+
+#signin{
+  font-size:.9em;
+  float:right;
+}
+
+#sign-in-box{
+  display:none;
+  height: auto;
+  border-radius: 4px;
+  border: 1px outset #FFD055;
+  height:auto;
+  background-color: #E1EDF2;
+  padding:5px;
+  position:absolute;
+  right:1%;
+  top:115px;
+  box-shadow: 2px 2px 5px #333;
+  opacity: 0.98;
+}
+
+#sign-in-box form{
+  margin:25px 0 10px 0;
+}
+
+#sign-in-box form input[type='submit']{
+  float:right;
+}
+
+#sign-in-close{
+  float:right;
+  font-size:.6em;
+  font-weight:600;
+  background-color: #FFEBD5;
+}
+
+.bannerBar{
+  background-image: url('../images/borderBar.png');
+  background-repeat: repeat-x;
+  width:100%;
+  height:5px;
+}
+
+#content{
+  border-radius: 4px;
+  border: 1px solid #FFD055;
+  height:auto;
+  width:90%;
+  margin: 15px auto;
+  background-color: #E1EDF2;
+  padding:8px;
+  overflow:auto;
+}
+
+#select-winner{
+  display:none;
+}
+
+#outcome{
+  display:none;
+}
+
+/* -- FORM ROWS -- */
+.form-row{
+  margin: 4px 0 8px;
+}
+
+.form-row label{
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+  font-size:.95em;
+}
+
+.form-helper{
+  font-size:.65em;
+}
+
+#outcome{
+  margin:10px;
+  padding:10px;
+  font-style:italic;
+}
+
+#outcome label{
+  display:inline-block;
+  min-width:75px;
+  text-align:right;
+  font-weight:600;
+}
+
+#footer{
+  font-size:.8em;
+  margin: 7px auto;
+}
+
+#footer ul{
+  text-align:center;
+  list-style-type:none;
+  padding:0;
+  margin:0;
+}
+
+#footer ul li{
+  display:inline;
+  color: #efefef;
+  margin:0 15px;
+}
+
+#footer a{
+  color: #99d5f8;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:.9em;
+  text-decoration: none;
+  font-style:none;
+}
+
+/*-- INDEX page -- */
+#index-main{
+  width:100%;
+  padding:5px 20px;
+}
+
+.index-column{
+}
+
+.index-column h4{
+  text-align: center;
+  margin-top:0;
+  -webkit-margin-before: 0;
+  margin-bottom:0;
+  -webkit-margin-after: 10px;
+}
+
+.index-column h5{
+  margin:15px 0;
+}
+
+.index-column hr{
+  -webkit-margin-after: 0;
+  -webkit-margin-before: 0;
+}
+
+.index-column table{
+  margin: 0 0 20px 0;
+}
+
+.index-article{
+  min-height:175px;
+  padding:0 9px 10px 9px;
+}
+
+.index-article h5 a{
+  text-decoration: none;
+}
+
+.article-image img{
+  margin-right:13px;
+  margin-top:10px;
+  max-width:150px;
+  border-radius: 10px;
+}
+
+.article-date{
+  font-size: .82em;
+  color: #696969;
+  margin: -15px 0 5px 0;
+}
+
+.more-link{
+  text-align:right;
+  position:relative;
+  bottom:20px;
+}
+
+.index-right-col{
+  width: 30%;
+  padding: 2px 20px;
+}
+
+.media-link{
+  width: 95%;
+  margin:0px 10px;
+}
+
+#index-leaders table{
+}
+
+#index-leaders .table-head td{
+  padding:10px 0 5px;
+}
+
+#index-leaders .table-row td:first-child{
+  padding-left:10px;
+  font-style: italic;
+}
+
+#index-leaders .table-row td:nth-child(even){
+  padding: 0 30px;
+}
+
+.table-head{
+  text-align:left;
+  font-family: 'Abel', sans-serif;
+  font-size:1.2em;
+  font-weight:600;
+  border-top:1px solid #444;
+}
+
+#table-head td{
+  padding-bottom:10px;
+}
+
+.rank-row{
+  margin:12px;
+  padding:0;
+}
+
+.rank-row li{
+  display:inline;
+  width: 120px;
+  margin:0 10px 0 0;
+  padding:0;
+}
+
+/* -- REGISTER page -- */
+
+.reg-col{
+  width:45%;
+  margin:20px;
+  float:left;
+  padding:0 10px;
+}
+
+
+/*-- INTERVIEW styles -- */
+
+.int-question{
+  font-style:italic;
+  color: #A50000;
+}
+
+/* -- RANKS page -- */
+
+#rank-nav{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#rank-nav li{
+  display: inline;
+  margin-right: 8px;
+}
+
+/* -- PLAYER VIEW CHART -- */
+
+#chart-container p{
+  float:right;
+  margin-left:20px;
+}
+#placeholder{
+  float:left;
+}
+
+/*-- MISC --*/
+
+.clear{
+  clear:both;
+}
+
+.space{
+  height:20px;
+  width:5px;
+}
+
+/*-- ARTICLES --*/
+
+.headline-img{
+  width:90%;
+  max-width:800px;
+  margin:5px 5%;
+}
+
+.article-sig{
+  float:right;
+  margin-right:45px;
+  font-style: italic;
+}
+
+/* --- BOOTSTRAP OVERRIDES --- */
