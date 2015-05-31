@@ -40,6 +40,12 @@
     <li>
       <a href='/ranks.php'>Rankings</a>
     </li>
+    <li>
+      <a href='archives.php'>Archives</a>
+    </li>
+    <li>
+      <a href='/streams.php'>Streams</a>
+    </li>
     <li id='signin'>
 <?php echo $signIn; ?>
     </li>

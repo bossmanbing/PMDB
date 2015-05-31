@@ -37,6 +37,10 @@ h4{
 
 h5{
   font-size:1.1em;
+  margin-top:0;
+  -webkit-margin-before: 0.2.em;
+  margin-bottom:0;
+  -webkit-margin-after: 0.2em;
 }
 
 h6{
@@ -387,6 +391,90 @@ thead{
   float:right;
   margin-right:45px;
   font-style: italic;
+}
+
+/* --- STREAM --- */
+
+#player{
+  position: relative;
+  height: 0;
+  overflow: hidden;
+}
+
+#player iframe,
+#player object,
+#player embed {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height:100%;
+}
+
+#live-streams img{
+  width: 100%;
+  margin:10px auto auto auto;
+}
+
+.view-info{
+  float:right;
+}
+
+#channels .chan-col{
+}
+
+#channels .chan-col h4{
+  border-bottom:1px solid #939393;
+  margin: 20px 0 5px 0;
+  border-radius:8px;
+  text-align:center;
+}
+
+#channels ul{
+  list-style-type: none;
+  margin:0;
+  padding:0;
+}
+
+#channels li{
+  margin:5px 0;
+  line-height:1.1em;
+  height:40px;
+  font-size:.95em;
+}
+
+.chan-time{
+  font-size:.7em;
+  margin-top:2px;
+}
+
+.today{
+  font-style:italic;
+}
+
+.today h4{
+  background: #B4E3F7;
+  text-align:center;
+}
+
+.today ul{
+}
+
+#chan-misc h4{
+  border-bottom:1px solid #939393;
+  margin: 20px auto 5px auto;
+  border-radius:8px;
+  text-align:center;
+  width:14%;
+}
+#chan-misc ul{
+  margin:15px 0;
+  padding:0;
+  list-style-type:none;
+}
+#chan-misc li{
+  display:inline-block;
+  margin:0 1%;
 }
 
 /* --- BOOTSTRAP OVERRIDES --- */
