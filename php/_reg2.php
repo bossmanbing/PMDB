@@ -1,54 +1,39 @@
 <?php
 require('../include/init.inc.php');
-$_SESSION['error'];
+$_SESSION['error'] = "";
 $error = $_SESSION['error'];
 
 $user = $_SESSION['user'];
 
-region = mysqli_real_escape_string($db, $_POST['region']);
-$email = mysqli_real_escape_string($db, $_POST['email']);
-$remail = mysqli_real_escape_string($db, $_POST['remail']);
-$password = mysqli_real_escape_string($db, $_POST['password']);
-$repass = mysqli_real_escape_string($db, $_POST['repassword']);
+$region = mysqli_real_escape_string($db, $_POST['region']);
 
-if (!isset($username) || !isset($email) || !isset($remail) || !isset($password) ||
-		!isset($repass)){
-			$error = "You left a field blank. Please try again.";
-			header('location:../register.php');
-		}
-if ($email !== $remail || $password !== $repass){
-			$error = "You did not enter matching email addresses or passwords. Please try again.";
-			header('location:../register.php');
-		}
 
+if (!isset($user) || !isset($region)){
+			$error = "You need to select a region to continue.";
+			//header('location:../reg2.php');
+		}
 		else{}
 
-$qry = "SELECT user_name
-				FROM user
-					WHERE user_name = '$username'
+$qry = "SELECT region_id
+				FROM regions
+					WHERE region_id = '$region'
 					LIMIT 1";
 $qry_res = $db->query($qry);
-$usr_cnt = $qry_res->num_rows;
+$reg_cnt = $qry_res->num_rows;
 
-if ($usr_cnt >= 1){
-	$error = "This username already exists.";
-	header('location:../register.php');
+if ($reg_cnt !== 1){
+	$error = "This region does not exist.";
+	//header('location:../reg2.php');
 }
 else{
-	$date = date("Y-m-d");
-	$new_pass = MD5($password.$date);
+	$upd_qry = "UPDATE user_region
+								SET region_id = $region
+								WHERE user_id = $user
+								LIMIT 1";
+	$db->query($upd_qry);
 
-	$ins_qry = "INSERT INTO user
-								(user_name, user_email, user_password, user_activated, user_dateJoined, user_level)
-							VALUES
-								('$username', '$email', '$new_pass', 1, '$date', 1)";
-	$db->query($ins_qry);
-
-	$c_name = 'user';
-	$c_value = $username;
-	setcookie($c_name,$c_value,time()+(86400 * 30), "/"); // 30 day cookie
-	$_SESSION['logged'] = 1;
-
+	$_SESSION['region'] = $region;
 	header('Location:../index.php');
 }
+echo $error;
 ?>

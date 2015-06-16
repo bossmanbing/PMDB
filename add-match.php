@@ -1,5 +1,6 @@
 <?php
-require('./include/init.inc.php');
+$path = $_SERVER['DOCUMENT_ROOT'];
+require($path.'/include/init.inc.php');
 
 $user_qry = "SELECT * FROM user ORDER BY user_name ASC";
 $user_res = $db->query($user_qry);
@@ -11,15 +12,15 @@ $game_res = $db->query($game_qry);
 <!DOCTYPE html>
 <html>
 <head>
-<?php require_once('./include/head.inc.php'); ?>
+<?php require_once($path.'/include/head.inc.php'); ?>
 
 	<script src="./js/_update-rank.js"></script>
 	<title>SmashTracker | Add a Match</title>
 </head>
 
 <body>
-<?php require_once('./include/header.inc.php'); ?>
-<?php require_once('./include/nav.inc.php'); ?>
+<?php require_once($path.'/include/header.inc.php'); ?>
+<?php require_once($path.'/include/nav.inc.php'); ?>
 
 	<div id='content'>
 
@@ -97,4 +98,4 @@ $game_res = $db->query($game_qry);
 
 	</div><!-- end CONTENT div -->
 
-<?php require_once('./include/footer.inc.php'); ?>
+<?php require_once($path.'/include/footer.inc.php'); ?>

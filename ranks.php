@@ -1,5 +1,6 @@
 <?php
-require('./include/init.inc.php');
+$path = $_SERVER['DOCUMENT_ROOT'];
+require($path.'/include/init.inc.php');
 
 $user_qry = "SELECT DISTINCT user.user_name, user.user_id,
 															ranking.score, game.game_name,
@@ -17,6 +18,7 @@ $user_qry = "SELECT DISTINCT user.user_name, user.user_id,
 									SELECT matches.game_id FROM matches
 										WHERE matches.user_id_1 = user.user_id
 											OR matches.user_id_2 = user.user_id)
+							AND game.game_id = 3
 							AND user.user_name NOT LIKE 'Test%'
 							ORDER BY game.game_name, ranking.score DESC";
 
@@ -36,7 +38,7 @@ else{
 <html>
 
 <head>
-<?php require_once('./include/head.inc.php'); ?>
+<?php require_once($path.'/include/head.inc.php'); ?>
   <link href="./styles/footable.core.css" rel="stylesheet" type="text/css" />
 	<link href="./styles/footable.standalone.css" rel="stylesheet" type="text/css" />
 
@@ -54,8 +56,8 @@ else{
 </head>
 
 <body>
-<?php require_once('./include/header.inc.php'); ?>
-<?php require_once('./include/nav.inc.php'); ?>
+<?php require_once($path.'/include/header.inc.php'); ?>
+<?php require_once($path.'/include/nav.inc.php'); ?>
 
 	<div id='content'>
 
@@ -90,4 +92,4 @@ else{
 
 	</div><!-- end CONTENT div -->
 
-	<?php require_once('./include/footer.inc.php'); ?>
+	<?php require_once($path.'/include/footer.inc.php'); ?>

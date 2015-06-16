@@ -9,7 +9,7 @@ require($path.'/include/init.inc.php');
 <head>
 <?php require_once($path.'/include/head.inc.php'); ?>
 <script src="/js/_streams.js"></script>
-<title>SmashTracker - Project M Streams</title>
+<title><?php echo $title; ?> - Project M Streams</title>
 
 </head>
 
@@ -21,17 +21,24 @@ require($path.'/include/init.inc.php');
 
 		<div id='streams' class='row-fluid'>
 			<div id='now-playing' class='col-md-8'>
-				<h4>Now Playing</h4>
+				<h4>Now Streaming</h4>
 				<div class='bannerBar'></div>
 				<br />
 				<div id='player'></div>
 			</div>
 
-			<div id='live-streams' class='col-md-4'>
-				<h4>Live Streams</h4>
+			<div id='stream-chat' class='col-md-4'>
+				<h4></h4>
 				<div class='bannerBar'></div>
-				<br />
 			</div>
+		</div>
+
+		<div class='clear'><br /></div>
+
+		<div id='live-streams' class='row-fluid'>
+			<h4>Live Streams <span class='float-right'><a href='/stream_schedule.php'>Full Stream Schedule >></a></span></h4>
+			<div class='bannerBar'></div>
+			<br />
 		</div>
 
 		<div id='channels'>

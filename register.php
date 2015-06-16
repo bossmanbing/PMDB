@@ -14,7 +14,7 @@ else{}
 <head>
 <?php require_once($path.'/include/head.inc.php'); ?>
 <script src="/js/_register.js"></script>
-<title>SmashTracker - Register or Log In</title>
+<title><?php echo $title; ?> - Register or Log In</title>
 
 </head>
 

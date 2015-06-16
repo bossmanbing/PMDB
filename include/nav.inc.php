@@ -38,10 +38,13 @@
       <a href='/'>Home</a>
     </li>
     <li>
+      <a href='/about.php'>About DBPM</a>
+    </li>
+    <li>
       <a href='/ranks.php'>Rankings</a>
     </li>
     <li>
-      <a href='archives.php'>Archives</a>
+      <a href='/archives.php'>Archives</a>
     </li>
     <li>
       <a href='/streams.php'>Streams</a>

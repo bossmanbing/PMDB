@@ -34,7 +34,7 @@ $ranks_res = $db->query($ranks_qry);
 <head>
 <?php require_once($path.'/include/head.inc.php'); ?>
 <script src="/js/_page-index.js"></script>
-<title>SmashTracker - Everything Smash</title>
+<title><?php echo $title; ?> - Everything Smash</title>
 
 </head>
 
@@ -43,15 +43,32 @@ $ranks_res = $db->query($ranks_qry);
 <?php require_once($path.'/include/nav.inc.php'); ?>
 
 	<div id='content' class='container-fluid'>
-
-		<h2>Welcome to SmashTracker</h2>
+		<h2>Welcome to Database Project M</h2>
 		<h4>We're still getting things together.</h4>
+		<div class='index-body'>
+
+			<p>
+				Welcome to the launch of Database:PM, or DBPM, a webpage devoted to integrating the Super Smash Brothers: Project M community on multiple scales through multiple means.
+			</p>
+
+			<p>
+				Here you can expect to find the latest information and discussion about Project M, akin to what you might see on the <a href='http://reddit.com/r/ssbpm' target='_blank'>Project M subreddit</a> and on <a href='http://smashboards.com/categories/project-m.465/' target='_blank'>Smashboards’s Project M subforum</a>. Additionally, you can expect articles and media about Project M, including articles, podcasts, videos, and more. We will work to bring you the latest on Project M, from metagame advice to interviews with top players to a variety of other topics. But we’re not just a web blog.
+			</p>
+			<p>
+				In the face of challenges for the future of Project M, we are looking to unite the community of Project M into a single cohesive unit on the largest scales. That means connecting local, regional, and national communities online. We are looking to work in conjunction with other already-existing avenues of community integration, including the subreddit and Smashboards subforum we mentioned earlier. But we are making efforts to integrate the community in a more extensive way, one that could potentially put YOU and YOUR SCENE into the spotlight and give you new motivations to reach your true potential. While we can’t reveal information on this quite yet, stay tuned in the coming weeks for more information from Database:PM!
+			</p>
+			<p>
+				Stick with us and stay up-to-date and connected to the rest of the Project M scenes around the world.
+			</p>
+			<p class='index-disclaimer'>
+				<em>(DBPM is not in any way affiliated with the Project M Development Team. This project is by the fans, for the fans, and we have immense respect for the PMDT’s hard work and dedication.)</em>
+			</p>
+		</div>
+
 		<p>
-			SmashTracker will be the go-to source for everything Super Smash Bros, tracking everything from social media, to news and events, as well as stream and VOD channels. Regions can even organize their own tier rankings.
+			<a href='/about.php' class='article-sig'>Learn more about DBPM...</a>
 		</p>
-		<p>
-			Stick around and make sure to keep checking things out. We add a little something new every day. Or you can be like the cool kids and follow us on Twitter, we'll make sure to update things there too.
-		</p>
+		<div class='clear'></div>
 
 		<div id='index-main' class='row'>
 
@@ -60,9 +77,27 @@ $ranks_res = $db->query($ranks_qry);
 				<div class='bannerBar'></div>
 
 				<div class='index-article row'>
+					<div class='col-md-4'>
+						<a href='/mom/mom21.php'><img class='article-image' src='/images/MoM1.png'></a>
+					</div>
 
-					<div class='article-image col-md-4'>
-						<a href='/interviews/interview-ripple-may-26-2015.php'><img align="left" alt='Interview with Ripple' src='./images/microphone_icon.png'></a>
+					<div class='col-md-8'>
+						<h5><a href='/mom/mom21.php'>Mind Over Meta 21 - Embracing Your Weaknesses</a></h5>
+						<div class='article-date'>
+							May 25, 2015
+						</div>
+						<p class='article-content'>
+							SmashCapps contributes to Mind Over Meta with advice on making the most with what you've got.
+						</p>
+					</div>
+
+				</div>
+				<hr />
+
+				<div class='index-article row'>
+
+					<div class='col-md-4'>
+						<a href='/interviews/interview-ripple-may-26-2015.php'><img class='article-image' align="left" alt='Interview with Ripple' src='./images/microphone_icon.png'></a>
 					</div>
 					<div class='col-md-8'>
 						<h5><a href='/interviews/interview-ripple-may-26-2015.php'>Ripple Interview - 3D's Reign of Supremacy</a></h5>
@@ -78,8 +113,8 @@ $ranks_res = $db->query($ranks_qry);
 				<hr />
 
 				<div class='index-article row'>
-					<div class='article-image col-md-4'>
-						<a href='/mom/mom20.php'><img src='/images/MoM1.png'></a>
+					<div class='col-md-4'>
+						<a href='/mom/mom20.php'><img class='article-image' src='/images/MoM1.png'></a>
 					</div>
 
 					<div class='col-md-8'>
@@ -90,24 +125,7 @@ $ranks_res = $db->query($ranks_qry);
 						<p class='article-content'>
 							Beyond the mind games and the hard reads, each player is impacted by the state of mind they bring to each set. By extension, members of the Project M community can help create a successful future for the game with positive mindsets and actions.
 						</p>
-					</div>
 
-				</div>
-				<hr />
-
-				<div class='index-article row'>
-					<div class='article-image col-md-4'>
-						<a href='#'><img align="left" src='./images/placeholder-article.jpg'></a>
-					</div>
-
-					<div class='col-md-8'>
-						<h5>Article Title - Subtitle</h5>
-						<div class='article-date'>
-							May 26, 2015
-						</div>
-						<p class='article-content'>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation...
-						</p>
 					</div>
 
 				</div>
@@ -120,6 +138,7 @@ $ranks_res = $db->query($ranks_qry);
 				<div id='index-leaders'>
 					<h4>Community</h4>
 					<div class='bannerBar'></div>
+
 					<h5>The top tiers for randomly selected regions.</h5>
 
 				<?php

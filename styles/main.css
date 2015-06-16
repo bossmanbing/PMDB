@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
-@import url(http://fonts.googleapis.com/css?family=Abel);
+@import url(http://fonts.googleapis.com/css?family=Oswald:400,700,300);
 body{
   background-color: #00003a;
   color:#080808;
@@ -7,8 +7,15 @@ body{
   margin:0;
   padding:0;
 }
-h1, h2, h3, h4, h5, h6{
-  font-family: 'Abel', sans-serif;
+
+h5, h6{
+  font-family: 'Oswald', sans-serif;
+  font-weight:300;
+}
+
+h1, h2, h3, h4, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
+  font-family: 'Oswald', sans-serif;
+  font-weight:400;
 }
 
 h1{
@@ -76,8 +83,13 @@ select{
 }
 
 thead{
-  font-family: 'Abel', sans-serif;
+  font-family: 'Oswald', sans-serif;
+  font-weight:300;
   font-size:1.2em;
+}
+
+th{
+  font-weight:400;
 }
 
 #logo{
@@ -103,7 +115,8 @@ thead{
 #nav li a{
   margin-right:25px;
   color: #99d5f8;
-  font-family: 'Abel', sans-serif;
+  font-family: 'Oswald', sans-serif;
+  font-weight:300;
   font-size:1.25em;
   text-decoration: none;
 }
@@ -174,7 +187,7 @@ thead{
   margin: 4px 0 8px;
 }
 
-.form-row label{
+.form-row lOswald{
   display: inline-block;
   width: 140px;
   text-align: right;
@@ -191,7 +204,7 @@ thead{
   font-style:italic;
 }
 
-#outcome label{
+#outcome lOswald{
   display:inline-block;
   min-width:75px;
   text-align:right;
@@ -225,6 +238,14 @@ thead{
 }
 
 /*-- INDEX page -- */
+.index-body{
+  font-size:15px;
+}
+
+.index-disclaimer{
+  font-size:12px;
+}
+
 #index-main{
   width:100%;
   padding:5px 20px;
@@ -259,7 +280,7 @@ thead{
   text-decoration: none;
 }
 
-.article-image img{
+.article-image{
   margin-right:13px;
   margin-top:10px;
   max-width:150px;
@@ -306,9 +327,9 @@ thead{
 
 .table-head{
   text-align:left;
-  font-family: 'Abel', sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size:1.2em;
-  font-weight:600;
+  font-weight:400;
   border-top:1px solid #444;
 }
 
@@ -338,6 +359,18 @@ thead{
 }
 
 
+/* -- ARCHIVES --*/
+
+.archive{
+  list-style-type:none;
+  margin:10px;
+  padding:0;
+}
+
+.archive li{
+  margin:8px 0 0 0;
+}
+
 /*-- INTERVIEW styles -- */
 
 .int-question{
@@ -358,26 +391,65 @@ thead{
   margin-right: 8px;
 }
 
+/* -- ADD PLAYER page --*/
+
+#add-form .add-info .form-control{
+  vertical-align:top;
+}
+
+.characters-list a:hover{
+  text-decoration: none;
+}
+
+.characters-list a{
+}
+
+.char-selected{
+  display:none;
+}
+
+.char-select, .char-selected{
+  margin:3px;
+  width:135px;
+  height:auto;
+  position:relative;
+}
+
+.char-select:hover{
+  top: -1px;
+  left: -1px;
+}
+
 /* -- PLAYER VIEW CHART -- */
 
 #chart-container p{
   float:right;
   margin-left:20px;
 }
-#placeholder{
+
+.chars div{
   float:left;
+  max-width:30%;
+  margin:2px;
+}
+
+.chars img{
+  border-radius: 10px;
+}
+
+.isMain{
+
+}
+
+.subChar img.img-thumbnail{
+  background:#c9c9c9;
+}
+
+.bio{
+  margin-top:10px;
 }
 
 /*-- MISC --*/
-
-.clear{
-  clear:both;
-}
-
-.space{
-  height:20px;
-  width:5px;
-}
 
 /*-- ARTICLES --*/
 
@@ -477,4 +549,34 @@ height:100%;
   margin:0 1%;
 }
 
+/* --- Helpers --- */
+
+.float-right{
+  float:right;
+}
+
+.float-left{
+  float:left;
+}
+
+.clear{
+  clear:both;
+}
+
+.space{
+  height:20px;
+  width:5px;
+}
+
+.overflow-auto{
+  overflow:auto;
+}
+
 /* --- BOOTSTRAP OVERRIDES --- */
+blockquote{
+  font-size:14px;
+  border-left:3px solid #CDCDCD;
+  padding:10px;
+  margin: 0 0 20px 10px;
+
+}
