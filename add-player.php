@@ -32,13 +32,13 @@ $char_res = $db->query($char_qry);
 		<p>
 			Just type in a name and submit it! We'll make sure they end up in your region.
 		</p>
-		<form class='' action='' method='post' id='add-form'>
+		<form class='' action='/php/add-submit.php' method='post' id='add-form'>
 			<div class='row'>
 
 				<div class='col-md-4'>
 					<div class='form-group'>
 						<label for='name'>
-							Name :
+							Tag Name :
 						</label>
 						<input type='text' class='form-control' name='name' id='player-name' maxlength=32 required />
 					</div>
@@ -50,22 +50,44 @@ $char_res = $db->query($char_qry);
 
 					<div class='form-group'>
 						<label for='bio'>Bio: </label>
-						<textarea rows='7' cols='40' maxlenght="2400" class='form-control'></textarea>
+						<textarea name='bio' rows='7' cols='40' maxlenght="2048" class='form-control'></textarea>
 					</div>
+
+					<div class='form-group'>
+						<label for='placings'>Victories and Placings: </label>
+						<textarea name='placings' rows='7' cols='40' maxlenght="1024" class='form-control'></textarea>
+					</div>
+
+					<div class='form-group youtube-helper'>
+						<label for='sets'>Videos of Notable sets: </label>
+						<br />
+						<small>Only paste the "key" part of the YouTube URL.</small>
+						<img src='/images/youtube-helper.png' alt='Only use the 11 character key from the YouTube URL'/>
+						<input type='text' name='set1' />
+						<input type='text' name='set2' />
+						<input type='text' name='set3' />
+						<div class='clear'></div>
+					</div>
+
+					<div class='form-group'>
+						<input type='submit' value='Add Player' id='add-submit' class='btn' />
+					</div>
+
+
 				</div>
 
 				<div class='col-md-8'>
 
 					<div class='form-group'>
 						<label for='characters' class='characters-label'>
-							<strong>Select player's main:</strong>
+							Select player's main:
 						</label>
-
-
-						<input type='hidden' value='' class='char-main char-1' name='char-main' />
-						<input type='hidden' value='' class='char-2' name='char-2' />
-						<input type='hidden' value='' class='char-3' name='char-3' />
 					</div>
+
+					<!-- SELECTED CHARACTERS -->
+					<input type='hidden' value='' class='char-main char-1' name='charMain' />
+					<input type='hidden' value='' class='char-2' name='char2' />
+					<input type='hidden' value='' class='char-3' name='char3' />
 
 					<div class='form-group characters-selected'>
 						<img class='selected-1 img-thumbnail char-selected' src='' alt='' />
@@ -85,9 +107,6 @@ $char_res = $db->query($char_qry);
 					</div>
 
 				</div>
-
-
-			<!--<input type='submit' value='Submit' id='add-submit'  />-->
 
 		</form>
 		<div id='outcome'></div>

@@ -32,6 +32,14 @@ else{
 								LIMIT 1";
 	$db->query($upd_qry);
 
+	if ($_SESSION['user_level'] == 2){
+		$upd_qry = "UPDATE user
+									SET user_level = 3
+									WHERE user_id = $user
+									LIMIT 1"
+		$db->query($upd_qry);
+	}
+
 	$_SESSION['region'] = $region;
 	header('Location:../index.php');
 }

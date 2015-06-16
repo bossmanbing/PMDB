@@ -46,7 +46,8 @@ $scores_res = $db->query($scores_qry);
 }
 
 
-$user_qry = "SELECT user_name, user_affiliation, user_sets, user_placings, user_victories, user_bio, region_name
+$user_qry = "SELECT user_name, user_affiliation, user_placings,
+										user_bio, region_name
  							FROM user
 							JOIN user_region
 								ON user_region.user_id = user.user_id
@@ -58,22 +59,18 @@ $user_res = $db->query($user_qry);
 $user_row = mysqli_fetch_assoc($user_res);
 $username = $user_row['user_name'];
 $aff = $user_row['user_affiliation'];
-$sets = $user_row['user_sets'];
+
 $placings = nl2br($user_row['user_placings']);
-$victories = nl2br($user_row['user_victories']);
 $bio = nl2br($user_row['user_bio']);
 $region = $user_row['region_name'];
+
+$setQry = "SELECT set_id, set_key FROM sets
+						WHERE user_id = $playerID LIMIT 3";
+$set_res = $db->query($setQry);
 
 if ( strlen($aff) > 0 ){
 	$aff = $user_row['user_affiliation']." | ";
 } else{}
-
-if ( strlen($sets) > 0 ){
-	$sets = "<div class='embed-responsive embed-responsive-16by9'><iframe class='embed-responsive-item' src='https://www.youtube.com/embed/".$user_row['user_sets']."' allowfullscreen></iframe></div>";
-}
-else{
-	$sets = "N/A";
-}
 
 ?>
 <!DOCTYPE html>
@@ -159,14 +156,20 @@ else{
 			<div class='col-md-6'>
 				<h4>Notable Placings</h4>
 
-				<p class='victories'><?php echo $victories; ?> - Won</p>
-
 				<p class='placings'><?php echo $placings; ?></p>
 
 				<hr />
 
 				<h4>Highlights</h4>
-				<p class='sets'><?php echo $sets; ?></p>
+				<p class='sets'>
+	<?php
+		while ($row = $set_res->fetch_assoc()){
+
+			echo "<div class='embed-responsive embed-responsive-16by9'><iframe class='embed-responsive-item' src='https://www.youtube.com/embed/".$row['set_key']."' allowfullscreen></iframe></div>";
+
+		}
+	?>
+				</p>
 			</div>
 
 		</div>

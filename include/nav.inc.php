@@ -1,7 +1,14 @@
 <?php
+echo $_SESSION['user_level'];
   $signIn;
   if (isset($_SESSION['logged']) && $_SESSION['logged'] === 1){
     $signIn = "<!-- <a href='/profile.php'>My Profile</a> | --><a href='/php/logout.php'>Log Out</a>";
+
+    if ( $_SESSION['user_level'] == 3 ){
+      $signIn = "<a href='/add-player.php'>Add a Player</a>  ".$signIn;
+
+    }
+
   }
   else{
     $signIn = "<a href='/register.php'>Sign Up</a>  <a id='sign-in' href='/register.php'>Log In</a>";

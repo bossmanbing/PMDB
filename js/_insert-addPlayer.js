@@ -3,7 +3,7 @@ $(function() {
 
   var addForm = $('#add-form');
 
-  addForm.submit(function(){
+  /*addForm.submit(function(){
     $.post('./php/add-submit.php', $(this).serialize(),
 			function(data){
 				if (data){
@@ -15,6 +15,7 @@ $(function() {
 		});
     return false;
   });
+  */
 
   var chars = 1;
   var rem = 3;
@@ -44,6 +45,7 @@ $(function() {
     if ( chars > 3 ){
       $('.characters-label').text('Characters have been selected');
       $('.characters-list').hide();
+      $('.hidden').show();
     } else{}
     return false;
   });

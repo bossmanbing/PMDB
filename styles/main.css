@@ -397,6 +397,19 @@ th{
   vertical-align:top;
 }
 
+.youtube-helper small{
+  font-size:12px;
+}
+
+.youtube-helper img{
+  width:95%;
+}
+
+.youtube-helper input{
+  float:right;
+  margin:3px 20px;
+}
+
 .characters-list a:hover{
   text-decoration: none;
 }
@@ -404,10 +417,16 @@ th{
 .characters-list a{
 }
 
+.characters-label{
+  font-weight:600;
+}
+
 .char-selected{
   display:none;
 }
 
+.char-select{
+}
 .char-select, .char-selected{
   margin:3px;
   width:135px;
@@ -420,7 +439,9 @@ th{
   left: -1px;
 }
 
-/* -- PLAYER VIEW CHART -- */
+
+
+/* -- PLAYER VIEW PAGE -- */
 
 #chart-container p{
   float:right;
@@ -447,6 +468,10 @@ th{
 
 .bio{
   margin-top:10px;
+}
+
+.sets div{
+  margin:0 0 20px 0;
 }
 
 /*-- MISC --*/
