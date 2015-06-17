@@ -6,7 +6,7 @@ if (isset($_GET['player'])){
 	$playerID = $_GET['player'];
 }
 else{
-	header('location:./index.php');
+	header('location:/index.php');
 }
 
 $char_qry = "SELECT char_displayName, char_fileName, is_main
@@ -18,36 +18,10 @@ $char_qry = "SELECT char_displayName, char_fileName, is_main
 								ORDER BY is_main DESC LIMIT 5";
 $char_res = $db->query($char_qry);
 
-$scores_qry = "SELECT CASE
-										WHEN matches.user_id_1 = $playerID
-											THEN matches.user_1_score
-										WHEN matches.user_id_2 = $playerID
-											THEN matches.user_2_score
-									END AS player_score, game.game_name
-									FROM matches
-									JOIN game
-										ON matches.game_id = game.game_id
-									WHERE
-										(user_id_1 = $playerID OR user_id_2 = $playerID)
-									AND matches.game_id = 3
-
-									ORDER BY match_id, game_name ASC";
-
-$scores_res = $db->query($scores_qry);
-
-	$dataPM[] = array(0,1500);
-	$ctPM = 1;
-
-
-	$pass = 0;
-	while ($row = $scores_res->fetch_assoc()){
-		$dataPM[] = array($ctPM, $row['player_score']);
-		$ctPM++;
-}
 
 
 $user_qry = "SELECT user_name, user_affiliation, user_placings,
-										user_bio, region_name
+										user_bio, region_name, regions.region_id
  							FROM user
 							JOIN user_region
 								ON user_region.user_id = user.user_id
@@ -63,6 +37,7 @@ $aff = $user_row['user_affiliation'];
 $placings = nl2br($user_row['user_placings']);
 $bio = nl2br($user_row['user_bio']);
 $region = $user_row['region_name'];
+$regionID = $user_row['region_id'];
 
 $setQry = "SELECT set_id, set_key FROM sets
 						WHERE user_id = $playerID LIMIT 3";
@@ -72,42 +47,25 @@ if ( strlen($aff) > 0 ){
 	$aff = $user_row['user_affiliation']." | ";
 } else{}
 
+	if ( isset($_SESSION['user_level']) && $_SESSION['user_level'] >= 3 && $regionID == $_SESSION['region']){
+		$formStart = "<form action='/edit-player.php' method='post'>";
+		$formContent = "<input type='hidden' name='region' value='".$regionID."' required /><input type='hidden' name='player' value='".$playerID."' required />";
+		$formClose = "<input type='submit' value='Edit Player' class='btn edit-btn' /></form>";
+		$form = $formStart.$formContent.$formClose;
+	}
+	else{
+		$form = '';
+	}
+
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 <?php require_once($path.'/include/head.inc.php'); ?>
-<script src='./flot/jquery.flot.js'></script>
-<script src='./flot/jquery.flot.js'></script>
-
-<script>
-	//put array into javascript variable
-  var dataPM = <?php echo json_encode($dataPM); ?>;
-	var datasets = {
-		"pm":{label:"Project M", data: dataPM }
-	}
-	console.log(dataPM);
-  //plot
-  $(function () {
-		$.plot("#placeholder", [ dataPM ], {
-			yaxis: {
-			        tickFormatter: function(val, axis) { return val < axis.max ? val.toFixed(0) : "<strong>Score</strong>";}
-			},
-			xaxis: {
-				tickDecimals: 0,
-				tickFormatter: function(val, axis) { return val < axis.max ? val.toFixed(0) : "<strong>Games</strong>";}
-			},
-
-		      legend: {
-		        position: "se"
-		      }
-		});
-	});
-</script>
 
 
-<title><?php echo $title; ?> | <?php echo $username; ?>'s Games</title>
+<title><?php echo $title; ?> | <?php echo $username; ?></title>
 
 </head>
 
@@ -124,7 +82,7 @@ if ( strlen($aff) > 0 ){
 
 			<div class='col-md-6'>
 
-				<h4>About <?php echo $username; ?></h4>
+				<h4>About <?php echo $username." ".$form; ?></h4>
 
 				<div class='chars'>
 	<?php
@@ -146,11 +104,6 @@ if ( strlen($aff) > 0 ){
 
 				<hr />
 
-				<h4>Match History</h4>
-				<div id='chart-container'>
-					<div id="placeholder" style='width:95%; height:300px;'></div>
-					<span id="choices" style="width:25%px; display:none;"></span>
-				</div>
 			</div>
 
 			<div class='col-md-6'>
@@ -161,7 +114,7 @@ if ( strlen($aff) > 0 ){
 				<hr />
 
 				<h4>Highlights</h4>
-				<p class='sets'>
+				<div class='sets'>
 	<?php
 		while ($row = $set_res->fetch_assoc()){
 
@@ -169,7 +122,7 @@ if ( strlen($aff) > 0 ){
 
 		}
 	?>
-				</p>
+			</div>
 			</div>
 
 		</div>

@@ -34,14 +34,14 @@ if ($usr_cnt === 1){
 	$_SESSION['user_level'] = $user_level;
 
 	if ($region == 0){
-		header('Location:../reg2.php');
+		header('Location:/reg2.php');
 	}
 	else{
-		header('Location:../add-player.php');
+		header('Location:/add-player.php');
 	}
 }
 else{
 	$_SESSION['logged'] = 0;
-	header('Location:../index.php');
+	header('Location:/index.php');
 }
 ?>

@@ -2,11 +2,12 @@
 $path = $_SERVER['DOCUMENT_ROOT'];
 require($path.'/include/init.inc.php');
 
-/*if (!isset($_SESSION['logged']) || $_SESSION['logged'] != 1){
-	header('location:'.$path.'/index.php');
+if ( !isset($_SESSION['logged']) || $_SESSION['logged'] != 1
+			||  !isset($_SESSION['user_level']) || $_SESSION['user_level'] <= 2
+	){
+	header('location:/index.php');
 
-	// NEED TO CHECK FOR TO/MOD STATUS
-}*/
+}
 
 $char_qry = "SELECT char_id, char_displayName, char_fileName FROM characters";
 $char_res = $db->query($char_qry);
@@ -30,7 +31,7 @@ $char_res = $db->query($char_qry);
 
 		<h2>Add a Player</h2>
 		<p>
-			Just type in a name and submit it! We'll make sure they end up in your region.
+			Tell us about your new player. Remember to include links to their sets as well as who they play as!
 		</p>
 		<form class='' action='/php/add-submit.php' method='post' id='add-form'>
 			<div class='row'>
@@ -45,7 +46,7 @@ $char_res = $db->query($char_qry);
 
 					<div class='form-group'>
 						<label for="affiliate">Sponsor/Affiliation: </label>
-						<input type='text' class='form-control' name='affiliate' maxlength="5" />
+						<input type='text' class='form-control' name='affiliate' maxlength="24" />
 					</div>
 
 					<div class='form-group'>
@@ -107,6 +108,7 @@ $char_res = $db->query($char_qry);
 					</div>
 
 				</div>
+			</div>
 
 		</form>
 		<div id='outcome'></div>

@@ -1,11 +1,11 @@
 <?php
-echo $_SESSION['user_level'];
+
   $signIn;
   if (isset($_SESSION['logged']) && $_SESSION['logged'] === 1){
     $signIn = "<!-- <a href='/profile.php'>My Profile</a> | --><a href='/php/logout.php'>Log Out</a>";
 
-    if ( $_SESSION['user_level'] == 3 ){
-      $signIn = "<a href='/add-player.php'>Add a Player</a>  ".$signIn;
+    if ( isset($_SESSION['user_level']) && $_SESSION['user_level'] == 3 ){
+      $signIn = "<a href='/add-player.php'>Add a Player</a>   ".$signIn;
 
     }
 
@@ -46,9 +46,6 @@ echo $_SESSION['user_level'];
     </li>
     <li>
       <a href='/about.php'>About DBPM</a>
-    </li>
-    <li>
-      <a href='/ranks.php'>Rankings</a>
     </li>
     <li>
       <a href='/archives.php'>Archives</a>

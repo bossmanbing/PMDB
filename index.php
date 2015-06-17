@@ -2,31 +2,23 @@
 $path = $_SERVER['DOCUMENT_ROOT'];
 require($path.'/include/init.inc.php');
 
-$ranks_qry = "SELECT ranking.score, user.user_name,
-															user.user_id, game.game_name,
-															regions.region_name
-							FROM user
-							JOIN ranking
-								ON user.user_id = ranking.user_id
-							JOIN game
-								ON ranking.game_id = game.game_id
-							JOIN user_region
-										ON user.user_id = user_region.user_id
+$players_qry = "SELECT user.user_id, user_name, user_bio, user_affiliation,
+												char_displayName, char_fileName, region_name
+									FROM user
+									JOIN user_region
+										ON user_region.user_id = user.user_id
 									JOIN regions
-										ON user_region.region_id = regions.region_id
-							WHERE game.game_id IN (
-									SELECT matches.game_id FROM matches
-										WHERE matches.user_id_1 = user.user_id
-											OR matches.user_id_2 = user.user_id)
-								AND ranking.score = (
-                                    SELECT DISTINCT MAX(inn.score) FROM ranking AS `inn`
-                                    	JOIN user_region AS us
-                                    		ON us.user_id = inn.user_id
-                                    	WHERE inn.game_id = game.game_id
-                                    	AND us.region_id = regions.region_id)
-							ORDER BY regions.region_name, game.game_name ASC";
+										ON regions.region_id = user_region.region_id
+									JOIN user_characters
+										ON user_characters.user_id = user.user_id
+									JOIN characters
+										ON characters.char_id = user_characters.char_id
+								WHERE LENGTH(user_bio) > 5
+									AND is_main = 1
+									ORDER BY RAND ()
+									LIMIT 5";
 
-$ranks_res = $db->query($ranks_qry);
+$players_res = $db->query($players_qry);
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,6 +36,7 @@ $ranks_res = $db->query($ranks_qry);
 
 	<div id='content' class='container-fluid'>
 		<h2>Welcome to Database Project M</h2>
+		<div class='bannerBar'></div>
 		<h4>We're still getting things together.</h4>
 		<div class='index-body'>
 
@@ -135,43 +128,20 @@ $ranks_res = $db->query($ranks_qry);
 
 			<div class='index-column col-md-4'>
 
-				<div id='index-leaders'>
+				<div class='index-players'>
 					<h4>Community</h4>
 					<div class='bannerBar'></div>
 
-					<h5>The top tiers for randomly selected regions.</h5>
+					<h5>Meet PM Players</h5>
 
 				<?php
-					$pass = 0;
-					$curRegion;
-					$prevRegion;
-					echo "<table>";
-					while($row = $ranks_res->fetch_assoc()){
-						$curRegion = $row['region_name'];
-
-						if (isset($prevRegion) && $curRegion === $prevRegion){
-							$pass = 1;
+					while($row = $players_res->fetch_assoc()){
+						echo "<div class='row'>";
+						echo "<div class='col-md-3'><strong>".$row['region_name']."</strong></div>";
+						echo "<div class='col-md-6'><a href='/player-view.php?player=".$row['user_id']."'>".$row['user_affiliation']." | ".$row['user_name']."</a></div>";
+						echo "<div class='col-md-3'><img src='/images/pm/chars/".$row['char_fileName']."' alt='".$row['char_displayName']."' class='featured-character' /></div>";
+						echo "</div>";
 						}
-						else{
-							$pass = 0;
-						}
-						if ($pass === 0){
-							echo "<tr class='table-head'><td>".$curRegion."</td></tr>";
-							$pass = 1;
-						}
-						else{}
-				?>
-
-						<tr class='table-row'>
-							<td><?php echo $row['user_name']; ?></td>
-							<td><?php echo $row['score']; ?></td>
-							<td><?php echo $row['game_name']; ?></td>
-						</tr>
-
-				<?php
-					$prevRegion = $curRegion;
-						}
-						echo "</table>";
 				?>
 
 				</div>

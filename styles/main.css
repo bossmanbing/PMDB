@@ -304,51 +304,28 @@ th{
   padding: 2px 20px;
 }
 
+.index-players .row{
+  margin: 0 0 15px 0;
+}
+
+.index-players .row div{
+  vertical-align: middle;
+}
+
 .media-link{
   width: 95%;
   margin:0px 10px;
 }
 
-#index-leaders table{
+.featured-character{
+  width:100%;
+  max-width:100px;
+  height:auto;
+  margin: 0 0 0 15px;
+  border-radius:10px;
+  position:relative;
+  top:-3%;
 }
-
-#index-leaders .table-head td{
-  padding:10px 0 5px;
-}
-
-#index-leaders .table-row td:first-child{
-  padding-left:10px;
-  font-style: italic;
-}
-
-#index-leaders .table-row td:nth-child(even){
-  padding: 0 30px;
-}
-
-.table-head{
-  text-align:left;
-  font-family: 'Oswald', sans-serif;
-  font-size:1.2em;
-  font-weight:400;
-  border-top:1px solid #444;
-}
-
-#table-head td{
-  padding-bottom:10px;
-}
-
-.rank-row{
-  margin:12px;
-  padding:0;
-}
-
-.rank-row li{
-  display:inline;
-  width: 120px;
-  margin:0 10px 0 0;
-  padding:0;
-}
-
 /* -- REGISTER page -- */
 
 .reg-col{
@@ -439,7 +416,23 @@ th{
   left: -1px;
 }
 
+/* -- EDIT PLAYER PAGE -- */
 
+.select-main{
+  display:none;
+}
+
+.edit-characters-list{
+  display:none;
+}
+
+.reset-btn{
+  background: #DDDDDD;
+}
+
+.reset-btn:hover{
+  background:#DEDEDE;
+}
 
 /* -- PLAYER VIEW PAGE -- */
 
@@ -471,10 +464,16 @@ th{
 }
 
 .sets div{
-  margin:0 0 20px 0;
+  margin:0 0 10px 0;
 }
 
 /*-- MISC --*/
+
+.edit-btn{
+  position:absolute;
+  top:0px;
+  right:11%;
+}
 
 /*-- ARTICLES --*/
 
@@ -604,4 +603,9 @@ blockquote{
   padding:10px;
   margin: 0 0 20px 10px;
 
+}
+
+.btn{
+  font-family: 'Oswald', sans-serif;
+  font-weight:400;
 }

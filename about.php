@@ -19,6 +19,7 @@ require($path.'/include/init.inc.php');
 	<div id='content' class='container-fluid'>
 
 		<h2>About Database Project M</h2>
+		<div class='bannerBar'></div>
 
     <p>
       Welcome to Database Project M, an effort to provide a hub of content about Project M and Project M scenes around the world. Database Project M is a collaboration for the community of Super Smash Brothers: Project M, by the community of Project M. We hope this becomes a central location for distributing information and discussion to members of the Project M community.
