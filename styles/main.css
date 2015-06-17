@@ -276,6 +276,14 @@ th{
   padding:0 9px 10px 9px;
 }
 
+.index-article h5{
+  margin:15px 0 0 0;
+}
+
+.index-article .tagline{
+  margin:0 0 10px 0;
+}
+
 .index-article h5 a{
   text-decoration: none;
 }
@@ -335,6 +343,27 @@ th{
   padding:0 10px;
 }
 
+/* -- ARTICLES PAGES -- */
+
+.tagline{
+  font-size: 12px;
+  font-style:italic;
+}
+
+.article-tag-line{
+  margin: 0 25px 10px 25px;
+
+}
+
+.article-tag-line span{
+  margin: 0 5px;
+}
+.article-page-author{
+
+}
+
+.article-page-date{
+}
 
 /* -- ARCHIVES --*/
 

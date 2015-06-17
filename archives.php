@@ -2,6 +2,43 @@
 $path = $_SERVER['DOCUMENT_ROOT'];
 require($path.'/include/init.inc.php');
 
+// Select 10 most recent articles.
+$art_qry = "SELECT sub_id, sub_category, sub_type, sub_title,
+									DATE_FORMAT(sub_date,'%b %d, %Y')  AS 'sub_date',
+									sub_author, sub_description, sub_content
+							FROM submissions
+							ORDER BY sub_id DESC";
+$art_res = $db->query($art_qry);
+
+$momContent = '';
+$intContent = '';
+$wpmContent = '';
+
+while ($row = $art_res->fetch_assoc()){
+
+	if ($row['sub_category'] == 'video'){
+		$link = "<a href='https://www.youtube.com/watch?v=".$row['sub_content']."' target='_blank' />";
+	}
+	else{
+		$link = "<a href='/article.php?id=".$row['sub_id']."'>";
+	}
+
+	$line = "<li><span class='article-page-date tagline'>".$row['sub_date']."</span><br />".$link.$row['sub_title']."</a></li>";
+
+	if ( $row['sub_type'] == 'mom'){
+		$momContent = $momContent.$line;
+	}
+	elseif ( $row['sub_type'] == 'interview'){
+		$intContent = $intContent.$line;
+	}
+	elseif ( $row['sub_type'] == 'weekPM'){
+		$wpmContent = $wpmContent.$line;
+	}
+}
+$momImg = "<img class='article-image' src='/images/MoM1.png' alt='Mind Over Meta' />";
+$intImg = "<img class='article-image' alt='Interview' src='./images/microphone_icon.png'>";
+$weekImg = "<img class='article-image' alt='This Week in PM' src='./images/weekpm.jpg'>";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,23 +59,30 @@ require($path.'/include/init.inc.php');
 		<div class='bannerBar'></div>
 		<div class='row-fluid'>
 
-			<div class='col-md-4'>
+			<div class='col-md-2'>
 				<img class='article-image' src='/images/MoM1.png' alt='Mind Over Meta' />
 				<div class='clear'></div>
 
 				<ul class='archive'>
-					<li><a href='/mom/mom21.php'>Mind Over Meta 21 - Embracing Your Weaknesses</a></li>
-					<li><a href='/mom/mom20.php'>Mind Over Meta 20 - Staying Postive</a></li>
-					<li><a href='/mom/mom1.php'>Mind Over Meta 1 - Staggered-Hit Game (Originally Published 11/18/2014)</a></li>
+					<?php echo $momContent; ?>
 				</ul>
 			</div>
 
-			<div class='col-md-4'>
-				<img class='article-image' align="left" alt='Interview with Ripple' src='./images/microphone_icon.png'>
+			<div class='col-md-2'>
+				<img class='article-image' align="left" alt='Interviews' src='./images/microphone_icon.png'>
 				<div class='clear'></div>
 
 				<ul class='archive'>
-					<li><a href='/interviews/interview-ripple-may-26-2015.php'>Ripple Interview - 3D's Reign of Supremacy</a></li>
+					<?php echo $intContent; ?>
+				</ul>
+			</div>
+
+			<div class='col-md-2'>
+				<img class='article-image' align="left" alt='This Week in PM' src='./images/weekpm.jpg'>
+				<div class='clear'></div>
+
+				<ul class='archive'>
+					<?php echo $wpmContent; ?>
 				</ul>
 			</div>
 

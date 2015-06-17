@@ -2,6 +2,7 @@
 $path = $_SERVER['DOCUMENT_ROOT'];
 require($path.'/include/init.inc.php');
 
+// Select player info for right column features
 $players_qry = "SELECT user.user_id, user_name, user_bio, user_affiliation,
 												char_displayName, char_fileName, region_name
 									FROM user
@@ -19,6 +20,17 @@ $players_qry = "SELECT user.user_id, user_name, user_bio, user_affiliation,
 									LIMIT 5";
 
 $players_res = $db->query($players_qry);
+
+// Select 10 most recent articles.
+$art_qry = "SELECT sub_id, sub_category, sub_type, sub_title,
+									DATE_FORMAT(sub_date,'%b %d, %Y')  AS 'sub_date',
+									sub_author, sub_description, sub_content
+							FROM submissions
+							ORDER BY sub_date ASC LIMIT 10";
+$art_res = $db->query($art_qry);
+$momImg = "<img class='article-image' src='/images/MoM1.png' alt='Mind Over Meta' />";
+$intImg = "<img class='article-image' alt='Interview' src='./images/microphone_icon.png'>";
+$weekImg = "<img class='article-image' alt='This Week in PM' src='./images/weekpm.jpg'>";
 ?>
 <!DOCTYPE html>
 <html>
@@ -69,60 +81,36 @@ $players_res = $db->query($players_qry);
 				<h4>Articles</h4>
 				<div class='bannerBar'></div>
 
-				<div class='index-article row'>
-					<div class='col-md-4'>
-						<a href='/mom/mom21.php'><img class='article-image' src='/images/MoM1.png'></a>
-					</div>
 
-					<div class='col-md-8'>
-						<h5><a href='/mom/mom21.php'>Mind Over Meta 21 - Embracing Your Weaknesses</a></h5>
-						<div class='article-date'>
-							May 25, 2015
-						</div>
-						<p class='article-content'>
-							SmashCapps contributes to Mind Over Meta with advice on making the most with what you've got.
-						</p>
-					</div>
+	<?php
+		while ($row = $art_res->fetch_assoc()){
+			$img = '';
+			if ($row['sub_type'] == 'mom'){
+				$img = $momImg;
+			}
+			elseif ($row['sub_type'] == 'interview'){
+				$img = $intImg;
+			}
+			elseif ($row['sub_type'] == 'weekPM'){
+				$img = $weekImg;
+			} else{}
 
-				</div>
-				<hr />
+			if ($row['sub_category'] == 'video'){
+				$link = "<a href='https://www.youtube.com/watch?v=".$row['sub_content']."' target='_blank' />";
+			}
+			else{
+				$link = "<a href='article.php?id=".$row['sub_id']."'>";
+			}
 
-				<div class='index-article row'>
+			echo "<div class='index-article row'>";
+			echo "<div class='col-md-4'>".$link.$img."</a></div>";
+			echo "<div class='col-md-8'><h5>".$link.$row['sub_title']."</a></h5>";
+			echo "<span class='article-page-date tagline'>".$row['sub_date']."</span><span class='article-page-author tagline'> -".$row['sub_author']."</span>";
+			echo "<p class='article-content'>".$row['sub_description']."</p></div>";
+			echo "</div><hr />";
 
-					<div class='col-md-4'>
-						<a href='/interviews/interview-ripple-may-26-2015.php'><img class='article-image' align="left" alt='Interview with Ripple' src='./images/microphone_icon.png'></a>
-					</div>
-					<div class='col-md-8'>
-						<h5><a href='/interviews/interview-ripple-may-26-2015.php'>Ripple Interview - 3D's Reign of Supremacy</a></h5>
-						<div class='article-date'>
-							May 26, 2015
-						</div>
-						<p class='article-content'>
-							PlayingOnSunday interviews Ripple about his underrepresented main, tournement success, and regions to watch for in PMDB's first ever interview!
-						</p>
-					</div>
-
-				</div>
-				<hr />
-
-				<div class='index-article row'>
-					<div class='col-md-4'>
-						<a href='/mom/mom20.php'><img class='article-image' src='/images/MoM1.png'></a>
-					</div>
-
-					<div class='col-md-8'>
-						<h5><a href='/mom/mom20.php'>Mind Over Meta 20 - Staying Positive</a></h5>
-						<div class='article-date'>
-							May 25, 2015
-						</div>
-						<p class='article-content'>
-							Beyond the mind games and the hard reads, each player is impacted by the state of mind they bring to each set. By extension, members of the Project M community can help create a successful future for the game with positive mindsets and actions.
-						</p>
-
-					</div>
-
-				</div>
-
+		}
+		?>
 			</div>
 
 
